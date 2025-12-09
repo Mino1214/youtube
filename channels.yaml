@@ -1,0 +1,201 @@
+# 채널 프로필 설정 파일
+# 여러 채널을 운영할 때 각 채널의 고유한 스타일을 정의합니다
+
+channels:
+  # 나레이션 숏츠 채널 (뉴스, 사건 설명 등)
+  narration_shorts:
+    name: "나레이션 숏츠"
+    description: "하나의 사건을 빠르게 설명하는 숏츠 스타일"
+    
+    # 번역 스타일
+    translation_style:
+      tone: "뉴스 해설자"  # 톤: 뉴스 해설자, 스토리텔러, 교육자 등
+      style: "간결하고 명확한 설명체"
+      max_length_ratio: 0.9  # 원문 대비 최대 길이 비율 (짧게 유지)
+      remove_fillers: true  # 불필요한 접속사/채움말 제거
+      
+    # TTS 설정
+    tts:
+      voice: "ko_KR-hyeri-medium"  # Piper 음성
+      speed: 1.15  # 빠른 템포
+      emotion: "neutral"  # 중립적 톤
+      
+    # 비디오 설정
+    video:
+      max_duration: 60  # 최대 길이 (초) - 숏츠용
+      resolution: "1080p"  # 1920x1080
+      fps: 30
+      background_color: "#1a1a1a"  # 어두운 배경
+      text_style: "bold"  # 굵은 텍스트
+      
+    # 자막 설정
+    subtitles:
+      font_size: 28  # 큰 자막
+      position: "bottom"
+      animation: "fade"  # 페이드 효과
+      highlight_keywords: true  # 키워드 강조
+      
+    # 출력 설정
+    output:
+      directory: "output/narration_shorts"
+      filename_pattern: "narration_{timestamp}_{title}.mp4"
+      auto_upload: false  # 자동 업로드 (미래 확장용)
+      
+  # 단편 스토리 채널
+  short_story:
+    name: "단편 스토리"
+    description: "긴 스토리텔링 콘텐츠"
+    
+    # 번역 스타일
+    translation_style:
+      tone: "스토리텔러"
+      style: "서사적이고 몰입감 있는 문체"
+      max_length_ratio: 1.2  # 원문보다 약간 길게 (설명 추가)
+      remove_fillers: false  # 자연스러운 흐름 유지
+      
+    # TTS 설정
+    tts:
+      voice: "ko_KR-hyeri-medium"
+      speed: 0.95  # 느린 템포 (스토리텔링)
+      emotion: "warm"  # 따뜻한 톤
+      
+    # 비디오 설정
+    video:
+      max_duration: 600  # 최대 길이 (초) - 긴 콘텐츠
+      resolution: "1080p"
+      fps: 30
+      background_color: "#0a0a0a"  # 매우 어두운 배경
+      text_style: "elegant"  # 우아한 텍스트
+      
+    # 자막 설정
+    subtitles:
+      font_size: 24  # 중간 크기 자막
+      position: "bottom"
+      animation: "smooth"  # 부드러운 효과
+      highlight_keywords: false  # 키워드 강조 안 함
+      
+    # 출력 설정
+    output:
+      directory: "output/short_story"
+      filename_pattern: "story_{timestamp}_{title}.mp4"
+      auto_upload: false
+      
+  # 교육 콘텐츠 채널
+  educational:
+    name: "교육 콘텐츠"
+    description: "교육적이고 설명적인 콘텐츠"
+    
+    # 번역 스타일
+    translation_style:
+      tone: "교육자"
+      style: "명확하고 이해하기 쉬운 설명체"
+      max_length_ratio: 1.1  # 약간 길게 (설명 추가)
+      remove_fillers: true
+      
+    # TTS 설정
+    tts:
+      voice: "ko_KR-hyeri-medium"
+      speed: 1.0  # 보통 템포
+      emotion: "clear"  # 명확한 톤
+      
+    # 비디오 설정
+    video:
+      max_duration: 300  # 최대 길이 (초)
+      resolution: "1080p"
+      fps: 30
+      background_color: "#ffffff"  # 밝은 배경
+      text_style: "clean"  # 깔끔한 텍스트
+      
+    # 자막 설정
+    subtitles:
+      font_size: 26
+      position: "bottom"
+      animation: "none"  # 애니메이션 없음
+      highlight_keywords: true
+      
+    # 출력 설정
+    output:
+      directory: "output/educational"
+      filename_pattern: "edu_{timestamp}_{title}.mp4"
+      auto_upload: false
+      
+  # 뉴스 리뷰 채널
+  news_review:
+    name: "뉴스 리뷰"
+    description: "뉴스 분석 및 리뷰"
+    
+    # 번역 스타일
+    translation_style:
+      tone: "뉴스 해설자"
+      style: "객관적이고 분석적인 문체"
+      max_length_ratio: 1.0  # 원문과 비슷한 길이
+      remove_fillers: true
+      
+    # TTS 설정
+    tts:
+      voice: "ko_KR-hyeri-medium"
+      speed: 1.1  # 약간 빠른 템포
+      emotion: "professional"  # 전문적인 톤
+      
+    # 비디오 설정
+    video:
+      max_duration: 180  # 최대 길이 (초)
+      resolution: "1080p"
+      fps: 30
+      background_color: "#1a1a1a"
+      text_style: "bold"
+      
+    # 자막 설정
+    subtitles:
+      font_size: 27
+      position: "bottom"
+      animation: "fade"
+      highlight_keywords: true
+      
+    # 출력 설정
+    output:
+      directory: "output/news_review"
+      filename_pattern: "news_{timestamp}_{title}.mp4"
+      auto_upload: false
+      
+  # 유아용 채널
+  kids:
+    name: "유아용"
+    description: "유아를 위한 교육적이고 친근한 콘텐츠"
+    
+    # 번역 스타일
+    translation_style:
+      tone: "교육자"
+      style: "매우 간단하고 명확한 문장, 반복적인 설명, 친근하고 따뜻한 표현"
+      max_length_ratio: 1.3  # 원문보다 길게 (설명을 더 자세히)
+      remove_fillers: false  # 자연스러운 흐름 유지
+      
+    # TTS 설정
+    tts:
+      voice: "ko_KR-hyeri-medium"
+      speed: 0.85  # 매우 느린 템포 (아이들이 이해하기 쉽게)
+      emotion: "friendly"  # 친근하고 따뜻한 톤
+      
+    # 비디오 설정
+    video:
+      max_duration: 120  # 최대 길이 (초) - 집중력 고려하여 짧게
+      resolution: "1080p"
+      fps: 30
+      background_color: "#fff8e1"  # 밝은 파스텔 톤 (아이들에게 친근한 색상)
+      text_style: "bold"  # 굵은 텍스트로 가독성 향상
+      
+    # 자막 설정
+    subtitles:
+      font_size: 36  # 매우 큰 자막 (읽기 학습에 도움)
+      position: "bottom"
+      animation: "smooth"  # 부드러운 효과
+      highlight_keywords: true  # 키워드 강조로 학습 효과
+      
+    # 출력 설정
+    output:
+      directory: "output/kids"
+      filename_pattern: "kids_{timestamp}_{title}.mp4"
+      auto_upload: false
+
+# 기본 채널 (설정하지 않으면 이 채널 사용)
+default_channel: "narration_shorts"

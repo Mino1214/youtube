@@ -1,0 +1,122 @@
+# 로컬 AI 비디오 변환 프로젝트 설정 파일
+
+# LLM 모델 설정
+llm:
+  # 선택 가능: "deepseek-r1-7b", "llama-3.1-8b"
+  model: "llama-3.1-8b"
+  # 모델 경로 (로컬에 다운로드된 경우)
+  model_path: null  # null이면 HuggingFace 캐시에서 자동으로 찾음
+  # GPU 사용 여부 (CUDA 12.8 지원)
+  use_gpu: true
+  # CPU fallback (llama.cpp 사용)
+  use_llama_cpp: false
+  # 배치 크기 (GPU 메모리에 따라 조정)
+  batch_size: 4
+  # 최대 토큰 수
+  max_tokens: 2048
+
+# TTS 모델 설정
+tts:
+  # 선택 가능: "piper", "styletts2", "vibevoice"
+  model: "vibevoice"
+  # Piper 설정
+  piper:
+    # HuggingFace 모델 ID 또는 로컬 음성 이름
+    # "neurlang/piper-onnx-kss-korean" (HuggingFace, 추천)
+    # "ko_KR-hyeri-medium" (기존 rhasspy 모델)
+    voice: "neurlang/piper-onnx-kss-korean"
+    speed: 1.0
+    noise_scale: 0.667
+    length_penalty: 1.0
+  # StyleTTS2 설정
+  styletts2:
+    speed: 1.0
+    noise_scale: 0.667
+  # VibeVoice-1.5B 설정
+  vibevoice:
+    model_id: "microsoft/VibeVoice-1.5B"  # 공식 HuggingFace 버전
+    use_gpu: true
+    speed: 1.0
+    # 참고: VibeVoice 사용 시 특별한 transformers 버전이 필요할 수 있습니다:
+    # pip install git+https://github.com/pengzhiliang/transformers.git
+
+# Whisper STT 설정
+whisper:
+  model: "openai/whisper-large-v3"  # HuggingFace 모델 ID
+  device: "cuda"  # CUDA 12.8 지원으로 GPU 모드 사용 가능
+  language: "en"
+  # 타임스탬프 설정
+  word_timestamps: true
+  # GPU 호환성 문제 시 자동 CPU fallback
+  auto_cpu_fallback: true
+
+# 자막 설정
+subtitles:
+  # "korean_only" 또는 "both_languages"
+  mode: "korean_only"
+  # 자막 스타일
+  style:
+    font_name: "Arial"
+    font_size: 24
+    primary_color: "white"
+    outline_color: "black"
+    outline_width: 2
+    position: "bottom"  # "top", "bottom", "center"
+
+# 비디오 처리 설정
+video:
+  # 출력 비디오 코덱
+  video_codec: "libx264"
+  # 출력 오디오 코덱
+  audio_codec: "aac"
+  # 비트레이트
+  video_bitrate: "5000k"
+  audio_bitrate: "192k"
+  # 프레임레이트 유지
+  preserve_fps: true
+
+# 임시 파일 설정
+temp:
+  # 임시 파일 저장 경로 (null이면 시스템 임시 디렉토리 사용)
+  temp_dir: null
+  # 작업 완료 후 임시 파일 자동 삭제
+  auto_cleanup: true
+
+# 로깅 설정
+logging:
+  level: "INFO"  # "DEBUG", "INFO", "WARNING", "ERROR"
+  # 각 단계별 진행 상황 출력
+  show_progress: true
+
+# 비디오 생성 설정 (VEO3 수준)
+video_generation:
+  # 비디오 생성 모델 선택
+  # "svd": Stable Video Diffusion (이미지→비디오, 고품질)
+  # "animatediff": AnimateDiff (텍스트→비디오 직접 생성)
+  # "simple": 간단한 텍스트 슬라이드쇼 (fallback)
+  model: "svd"  # 기본값: svd
+  
+  # 모델 경로 (로컬에 다운로드된 경우, null이면 HuggingFace에서 자동 다운로드)
+  model_path: null
+  
+  # GPU 사용 여부
+  use_gpu: true
+  # GPU 강제 사용 (CUDA가 감지되지 않아도 GPU 사용 시도)
+  force_gpu: false  # false로 설정하여 호환성 문제 시 CPU fallback
+  # GPU 호환성 문제 시 자동 CPU fallback
+  auto_cpu_fallback: true  # GPU 초기화 실패 시 자동으로 CPU 모드로 전환
+  
+  # 비디오 해상도
+  # SDXL 권장 해상도: 1024x1024, 1024x768, 1280x720 등
+  width: 1024  # SDXL 기본 권장 해상도
+  height: 576  # 16:9 비율 (또는 1024x1024, 1024x768 사용 가능)
+  
+  # 프레임레이트
+  fps: 24  # 비디오 생성 모델은 보통 24fps
+  
+  # 배경색 (simple 모드에서만 사용)
+  background_color: "#000000"
+  
+  # 이미지 생성 모델 사용 여부 (svd 모드에서 텍스트→이미지 변환용)
+  use_image_generation: true
+

@@ -1,0 +1,45 @@
+# Core dependencies - 호환 버전으로 고정
+# 설치 순서: 1) PyTorch, 2) NumPy, 3) transformers, 4) diffusers, 5) 나머지
+
+# 1. PyTorch (먼저 설치)
+torch>=2.0.0,<2.5.0
+
+# 2. NumPy (PyTorch와 호환)
+numpy>=1.24.0,<2.0.0
+
+# 3. Transformers & Diffusers (서로 호환되는 버전)
+transformers>=4.40.0,<5.0.0
+diffusers>=0.27.0,<0.30.0
+huggingface-hub>=0.20.0,<1.0.0
+
+# 4. Accelerate & 기타 ML 라이브러리
+accelerate>=0.24.0,<1.0.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0,<6.0.0
+
+# Whisper STT
+openai-whisper>=20231117
+librosa>=0.10.0,<1.0.0
+
+# TTS
+piper-tts>=1.2.0  # Piper TTS Python 패키지
+
+# Video/Audio processing
+ffmpeg-python>=0.2.0
+moviepy>=1.0.3
+yt-dlp>=2023.11.16
+
+# Utilities
+pyyaml>=6.0.1
+tqdm>=4.66.0
+requests>=2.31.0
+Pillow>=10.0.0
+
+# Video Generation (VEO3 수준)
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+safetensors>=0.4.0,<1.0.0
+invisible-watermark>=0.2.0,<1.0.0
+
+# xformers는 선택사항 (GPU만, CPU에서는 불필요)
+# xformers>=0.0.22
